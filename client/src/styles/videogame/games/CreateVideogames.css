@@ -1,0 +1,251 @@
+.container_register_videogame{
+    z-index: 500;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+
+    background-color: rgba(0, 0, 0, 0.767);
+
+
+}
+
+/* componente donde se hace el registro */
+.container_register_videogame .register_videogame{
+    position: relative;
+
+    width: 40%;
+    max-width: 500px;
+    height: 85%;
+    max-height: 700px;
+
+    border-radius: 5px;
+    box-shadow: rgba(217, 218, 212, 0.2) 0px 4px 30px 0px ; 
+    
+    background-color: rgba(54, 54, 53, 0.863);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    overflow-y: scroll;
+
+
+
+    padding: 20px;
+}
+
+/* personalizar scroll de arriba */
+.register_videogame::-webkit-scrollbar{
+    background-color: rgb(93, 95, 95);
+
+    width: 7px;
+    border-radius: 0 4px 4px 0;
+}
+.register_videogame::-webkit-scrollbar-thumb{
+    background-color: rgb(24, 23, 23);
+    border-radius: 0 3px 3px 0;
+}
+
+/* encabezado*/
+.container_register_videogame .register_encabezado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: auto;
+
+    margin: 0 ;
+}
+.register_encabezado p{
+    color: rgb(213, 218, 213);
+
+    border-radius: 3px;
+    font-size: 1.5em;
+    font-weight: 800;
+    margin: 0;
+    padding: 5px 15px;
+}
+
+
+
+
+/* boton cerrar */
+.button_cerrar{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: 2px;
+
+    transition: 0.2s ease all;
+
+    color: black;
+
+    background-color: rgb(213, 216, 19);
+}
+
+.button_cerrar:hover{
+    scale: 1.1;
+}
+/* create message */
+.create_message{
+    margin: 0;
+    font-size: 16px;
+    color: rgb(165, 69, 69);
+    font-weight: 600;
+}
+
+.create_videogame_message{
+    margin: 0;
+    font-size: 16px;
+    color: rgb(47, 170, 53);
+    font-weight: 600;
+}
+
+
+/* Formulario */
+.formulario_register_videogame{
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.formulario_register_videogame .file_option{
+    display: flex;
+    flex-direction: row;
+
+    min-height: 40px;
+    height: auto;
+
+    align-items: center;
+
+
+    width: 100%;
+    margin: 2px 0;
+}
+.formulario_register_videogame .file_option.textarea{
+    height: 70px;
+    overflow: auto;
+
+}
+
+
+/*P */
+.formulario_register_videogame p{
+    width: 25%;
+    max-width: 25%;
+    min-width: 25%;
+
+    text-align: right;
+    margin-right: 5%;
+    font-size: 15px;
+    font-weight: 600;
+    color: wheat;
+
+}
+ /* inputs */
+.formulario_register_videogame .input_form, .container_barra_selected{
+    flex: 1;
+
+    text-align: left;
+    outline: none;
+    border: none;
+    height: 50%;
+    padding: 5px 5px 5px 8px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    border-radius: 3px;
+}
+.input_form{
+    background-color: rgb(209, 203, 203);
+
+}
+
+
+.input_form:hover{
+    background-color: white;
+}
+
+
+
+.formulario_register_videogame textarea{
+    flex: 1;
+
+    border: none;
+
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px 5px 5px 8px;
+
+
+    text-align: left;
+    outline: none;
+    height: 80%;
+
+    border-radius: 3px;
+
+    background-color: rgb(209, 203, 203);
+
+}
+.formulario_register_videogame textarea:hover{
+    background-color: white;
+}
+
+
+
+
+
+
+
+
+/* button_create */
+.formulario_register_videogame .button_create{
+    display: inline-block;
+    background-color: rgb(5, 128, 5);
+
+    margin: auto;
+    margin-top: 16px;
+    cursor: pointer;
+
+    padding: 10px 15px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 5px;
+    color: rgb(177, 171, 171);
+
+    outline: none;
+    border: none;
+
+    transition: 0.2s;
+
+}
+
+
+
+.formulario_register_videogame .button_create:hover{
+    scale: 1.1;
+    color: white;
+}
+
+

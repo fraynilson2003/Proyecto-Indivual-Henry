@@ -1,0 +1,67 @@
+/* ESTILO GENERAL */
+:root {
+    --color_principal: rgb(25, 26, 26);
+    --color_componentes: rgba(39, 39, 39, 0.562);
+}
+
+.section_videogame{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    background: var(--color_principal);
+    text-align: center;
+
+    position: relative;
+
+    display: grid;
+    grid-template-areas: 
+    "nav    nav     nav     nav     nav     nav"
+    "filter games   games   games   games   games"
+    "footer footer  footer  footer  footer  footer"
+    ;
+
+    grid-template-rows: 100px auto 100px;
+
+}
+
+/* barra de navegacion */
+.NavBar{
+    grid-area: nav;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+
+    margin: 20px 0 ;
+
+    align-items: center;
+    color: rgb(240, 234, 234); 
+
+}
+/* aside */
+.container_filtros{
+    height: auto;
+    grid-area: filter;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px 0 20px;
+
+    min-width: 250px;
+    min-height: 700px;
+
+}
+
+/* videogames */
+.container_videogames{
+    height: auto;
+    min-height: 1000px;
+    margin: 0 20px 0 10px;
+
+    grid-area: games;
+}
+/* footer */
+.footer{
+    grid-area: footer;
+    font-size: 20px;
+    font-weight: 600;
+    color: gray;
+}

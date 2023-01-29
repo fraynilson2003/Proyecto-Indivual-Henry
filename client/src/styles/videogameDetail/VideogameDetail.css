@@ -1,0 +1,167 @@
+:root {
+    --color_principal: rgb(25, 26, 26);
+    --color_componentes: rgba(39, 39, 39, 0.562);
+}
+
+.section_detail_videogame{
+    display: flex;
+    flex-direction: row;
+
+   /* position: relative;*/
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0;
+
+    height: auto;
+    min-height: 100%;
+
+    background-color:var(--color_principal) ;
+
+}
+
+
+
+
+/* right position */
+.section_detail_videogame .right_position{
+    width: 65%;
+    margin: 30px 0 20px 0;
+
+    height: auto;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+    /*background-color: rgba(70, 70, 80, 0.418);*/
+}
+
+/* Imagen */
+.section_detail_videogame .container_img_fond{
+    width: 90%;
+    min-width: 90%;
+    max-width: 90%;
+    
+    max-height: 70%;
+    height: auto;
+  
+    border-radius: 15px; /* crea un borde ovalado horizontal */
+
+    user-select: none;
+
+    -webkit-mask-image: url("../../images/mak_splas2.png");
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 130%;
+
+
+}
+
+.container_img_fond img{
+    border-radius: 15px; /* crea un borde ovalado horizontal */
+
+    width: 100%;
+    min-width: 100%;
+
+    max-height: 500px;
+    height: 100%;
+    
+    object-fit: cover;
+
+    /* mask */
+}
+
+/* TITLE */
+.right_position h2{
+    font-size: 28px;
+    color: white;
+    font-family: Times, serif;
+    margin: 10px 0 10px;
+}
+
+/* detail_generos */
+
+.section_detail_videogame .detail_generos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+
+    min-height: 50px;
+    height: auto;
+
+    width: 60%;
+}
+
+
+.detail_generos .p_detail_generos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    font-weight: 800;
+    font-size: 17px;
+
+    min-width: 100px;
+    width: 30%;
+    min-height: 20px;
+
+    margin: 5px 10px;
+    padding: 7px 5px;
+    color: rgb(12, 12, 12);
+}
+
+/* Colores Barras  */
+.p_detail_generos:nth-child(4n + 1){
+    background-color: #e6be0fe5;  
+
+}
+.p_detail_generos:nth-child(4n + 2){
+    background-color: #e6be0fe5;  
+}
+.p_detail_generos:nth-child(4n + 3){
+    background-color: #e6be0fe5;  
+}
+.p_detail_generos:nth-child(4n + 4){
+    background-color: #e6be0fe5;  
+}
+
+
+
+
+/************************************/
+
+/* aside */
+.section_detail_videogame .container_aside_det{
+    display: flex;
+    flex-direction: column;
+
+    margin: 30px 5px 30px 5%;
+
+    min-height: 90vh;
+    height: auto;
+    width: 30%;
+
+    border-radius: 10px;
+
+    background-color:var(--color_componentes) ;
+
+}
+
+/* detalles props*/
+
+.section_detail_videogame .container_detail_props{
+
+
+}
+
+/* footer detail */
+.section_detail_videogame .container_footer_det{
+}

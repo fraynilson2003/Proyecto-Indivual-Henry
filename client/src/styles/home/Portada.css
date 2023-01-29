@@ -1,0 +1,103 @@
+.wrp{
+    width: 100%;
+    height: 100%;
+    /* height: 500px; */
+    position: relative;
+    background-color: rgba(49, 83, 49, 0.795);
+
+}
+
+.portada{
+    width: 100%;
+    height: 100%;
+    /* background: url("../../images/videogame.png"); */
+    background-image: url("../../images/videogame.png");
+    background-repeat: no-repeat;
+    background-size: 40%;
+
+    background-position-x: 80%;
+    background-position-y: 15%;
+    background-attachment: fixed;
+}
+
+.contenido{
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+
+
+    background: rgba(red, green, blue, alpha);
+    
+}
+
+.contenido .info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 550px;
+    height: 100%;
+
+    padding-top: 5%;
+    align-items: center;
+}
+
+.contenido .info h1{
+    color: rgb(15, 21, 110);
+    font-size: 50px;
+    text-shadow: 0px 1px 3px rgba(26, 4, 66, 0.747);
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+/*Link*/
+.link_home{
+    display: inline-block;
+    text-decoration: none;
+    font-size: 19px;
+    padding: 7px 20px;
+
+    font-weight: 800;
+    color: rgb(230, 230, 230);
+    background: rgba(136, 14, 14, 0.911);
+
+    border-radius: 5px;
+    border: 2px solid transparent;
+    letter-spacing: 0.5px;
+
+
+
+    transition: all 0.3s ease;
+}
+.link_home:hover{
+    background: rgba(58, 64, 150, 0.432);
+
+    color: rgb(219, 208, 208);
+    border: 2px solid rgb(41, 40, 40);
+    cursor: pointer;
+}
+
+.curveado{
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    max-width: 100%;
+    bottom: -1rem;
+    
+}
+
+.img-svg{
+    width: 100%;
+    max-width: 100%;
+
+}
+
+@media(max-width: 768px){
+    .contenido .info h1{
+        font-size: 35px;
+    }
+}
+
