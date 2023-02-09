@@ -44,8 +44,6 @@ let getAllPlatform = async()=>{
     } catch (error) {
       throw Error(error)
     }
-
- 
 }
 /*************** POST ************************** */
 

@@ -1,24 +1,21 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { expect } = require('chai');
-const session = require('supertest-session');
-const app = require('../../src/app.js');
-const { Videogame, conn } = require('../../src/db.js');
+const request = require('supertest');
+const { generRouter } = require('../../src/routes/movieRouter/generRouter');
 
-const agent = session(app);
-const videogame = {
-  name: 'Super Mario Bros',
-};
-
-describe('Videogame routes', () => {
-  before(() => conn.authenticate()
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  }));
-  beforeEach(() => Videogame.sync({ force: true })
-    .then(() => Videogame.create(videogame)));
-  describe('GET /videogames', () => {
-    it('should get 200', () =>
-      agent.get('/videogames').expect(200)
-    );
+describe('Test the GET /geners route', () => {
+  test('It should return 200 status code and all the geners', async () => {
+    const response = await request(generRouter).get('/');
+    expect(response.statusCode).toBe(200);
+    //expect(response.body).toEqual(/* los geners esperados */);
   });
 });
+
+// describe('Test the POST /geners route', () => {
+//   test('It should return 200 status code and the new gener', async () => {
+//     const response = await request(generRouter)
+//       .post('/')
+//       .send({ name: 'Adventure' });
+//     expect(response.statusCode).toBe(200);
+//     expect(response.body).toEqual(/* el gener esperado */);
+//   });
+// });

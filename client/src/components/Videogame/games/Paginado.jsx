@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
-import { useLayoutEffect } from 'react';
-import { useEffect } from 'react';
+import React from 'react'
+
 
 export const Paginado = ({stateRender, videogamesNumPage, controllPage}) => {
+  let longVid
+
+  if (stateRender.length){
+    longVid = stateRender.length
+  }else{
+    longVid = 15
+  }
 
   let newSTate = []
-  for (let i = 1; i <= Math.ceil(stateRender.length/videogamesNumPage); i++) {  
+  for (let i = 1; i <= Math.ceil(longVid/videogamesNumPage); i++) {  
     newSTate.push(i)
   }
 

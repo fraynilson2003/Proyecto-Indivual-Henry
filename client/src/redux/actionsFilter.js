@@ -4,10 +4,18 @@ import { ordenadorABC, ordenadorGener, ordenadorOrigin } from "../helpers/Ordena
 export const SET_FILTER_ORDER = "SET_FILTER_ORDER"
 export const SET_FILTER_ORIGIN = "SET_FILTER_ORIGIN"
 export const SET_FILTER_GENER = "SET_FILTER_GENER"
-
-export const FILTER_VIDEOGAMES = "FILTER_VIDEOGAMES"
+export const SET_FILTER_NAME = "SET_FILTER_NAME"
 
 //*********************************************************** */
+
+export let setFilterName = (name)=>{
+  return{
+      type:SET_FILTER_NAME,
+      payload: name
+    }
+}
+
+
 export let setFilterOrder = (order)=>{
     return{
         type:SET_FILTER_ORDER,

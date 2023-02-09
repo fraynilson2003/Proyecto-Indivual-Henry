@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGeners, putOrderVideogames, putStateRegister } from "../../redux/actions";
+import { getAllGeners, putOrderVideogames, putStatePaginado, putStateRegister } from "../../redux/actions";
 import { setFilterGener, setFilterOrder, setFilterOrigin } from "../../redux/actionsFilter";
 import "../../styles/videogame/Aside.css"
 
@@ -35,26 +35,37 @@ export const Aside = () => {
   }
 
   //ESTADOR PARA VALORES DE OPCIONES
-  // let orderValue = useSelector(state => state.order)
-  // let originValue = useSelector(state => state.FilterOrigin)
-  // let generValue = useSelector(state => state.FilterGener)
+  let orderValue = useSelector(state => state.order)
+  let originValue = useSelector(state => state.FilterOrigin)
+  let generValue = useSelector(state => state.FilterGener)
+
+  let LimpiarFiltros = ()=>{
+    dispatch(setFilterOrder("a - z"))
+    dispatch(setFilterOrigin("All"))
+    dispatch(setFilterGener(0))
+
+  }
+
 
   //metodos para modificar estos estados
   let actualizarOrderValue = (e)=>{
     console.log(e.target.value);
     dispatch(setFilterOrder(e.target.value))
+    dispatch(putStatePaginado(1))
+
   }
 
   let actualizarOriginValue = (e)=>{
     console.log(e.target.value);
     dispatch(setFilterOrigin(e.target.value))
+    dispatch(putStatePaginado(1))
+
   }
 
   let actualizarGenerValue = (e)=>{
     console.log(e.target.value);
     dispatch( setFilterGener(e.target.value))
-
-   
+    dispatch(putStatePaginado(1))
 
   }
 
@@ -96,6 +107,11 @@ export const Aside = () => {
         <p className="geners_titulo_general"></p>
       </div>
 
+      <div onClick={LimpiarFiltros}>
+        Limpiar filtros
+      </div>
+
+
       {/* ALFABETICAMENTE */}
       <div className="container_geners">
     
@@ -103,7 +119,7 @@ export const Aside = () => {
           <div className={optionOrder?"option_container active":"option_container"}>
             {orderVideogames.length && orderVideogames.map(opt=>
               <div key={opt.id} className="option">
-                <input type="radio" className="radio" id={opt.name} name="button_ABC" value={opt.name} onChange={actualizarOrderValue}/>
+                <input type="radio" checked={opt.name == orderValue} className="radio" id={opt.name} name="button_ABC" value={opt.name} onChange={actualizarOrderValue}/>
                 <label htmlFor={opt.name} className="label">{opt.name}</label>
               </div>
             )}
@@ -129,7 +145,7 @@ export const Aside = () => {
           <div className={optionOrigin?"option_container active":"option_container"}>
             {originData.length && originData.map(opt=>
               <div key={opt.id} className="option">
-                <input type="radio" className="radio" id={opt.name} name="button_database" value={opt.name} onChange={actualizarOriginValue} />
+                <input type="radio" checked={opt.name == originValue} className="radio" id={opt.name} name="button_database" value={opt.name} onChange={actualizarOriginValue} />
                 <label htmlFor={opt.name} >{opt.name}</label>
               </div>
             )}
@@ -150,7 +166,7 @@ export const Aside = () => {
           <div className={optionGener?"option_container active":"option_container"}>
             {allGeners.length && allGeners.map(opt=>
               <div key={opt.id} className="option">
-                <input type="radio" className="radio" id={opt.name} name="button_gener" value={opt.id} onChange={actualizarGenerValue} />
+                <input type="radio" checked={opt.id == generValue} className="radio" id={opt.name} name="button_gener" value={opt.id} onChange={actualizarGenerValue} />
                 <label htmlFor={opt.name} >{opt.name}</label>
               </div>
             )}

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { actualizarAllVidegames, actualizarResultCreate, getAllPlatforms, getAllVideogames, postRegisterVideogame, putStateRegister } from '../../../../redux/actions'
+import { actualizarAllVidegames, actualizarResultCreate, getAllPlatforms, getAllVideogames, postRegisterVideogame, postStateForm, putStateRegister } from '../../../../redux/actions'
 import "../../../../styles/videogame/games/CreateVideogames.css"
 import { BarraDeEleccion } from './BarraDeEleccion'
 
@@ -17,24 +17,16 @@ export const CreateVideogame = () => {
 
   const dispatch = useDispatch()
   //estado para formulario
-  let [formState, setFormState] = useState({
-    name: "",
-    idGener: [],
-    idPlatform: [],
-    released: "",
-    background_image: "",
-    rating: "",
-    description: ""
-  })
+  let formStateRe = useSelector(state => state.formStateRedux)
 
   let handleForm = (eve)=>{
     const property = eve.target.name
     const value = eve.target.value
 
-    setFormState({
-      ...formState,
+    dispatch(postStateForm({
+      ...formStateRe,
       [property]:value
-    })
+    }))
   }
 
   const handleFormFloat = (eve) => {
@@ -47,32 +39,24 @@ export const CreateVideogame = () => {
     if (decimalCount > 1 || num > 5 || num < 0) {
   
     }else{
-        setFormState({
-          ...formState,
-          [property]:Number(value)
-        })
-      }
+      dispatch(postStateForm({
+        ...formStateRe,
+        [property]:Number(value)
+      }))
     }
+  }
   
 
   //enviar formulario
   let handleSubitForm = (eve)=>{
     eve.preventDefault();
 
-    let newVide = formState
-
-    //corregimos los sting
-    newVide.name = newVide.name.replace(/^\s+|\s+$/g, "")
-    newVide.background_image = newVide.background_image.replace(/^\s+|\s+$/g, "")
-    newVide.description = newVide.description.replace(/^\s+|\s+$/g, "")
-
-    if(newVide.name && newVide.idGener.length && newVide.idPlatform.length
-      && newVide.rating && newVide.description && newVide.released){
-        dispatch(postRegisterVideogame(newVide))
+    if(formStateRe.name && formStateRe.idGener.length && formStateRe.idPlatform.length
+      && formStateRe.rating && formStateRe.description && formStateRe.released){
+        dispatch(postRegisterVideogame(formStateRe))
         dispatch(actualizarAllVidegames())
         
-
-        setFormState({
+        dispatch(postStateForm({
           name: "",
           idGener: [],
           idPlatform: [],
@@ -80,7 +64,7 @@ export const CreateVideogame = () => {
           background_image: "",
           rating: "",
           description: ""
-        })
+        }))
 
         setFormValidation(false)
 
@@ -101,6 +85,15 @@ export const CreateVideogame = () => {
 
   let actCompRegis = ()=>{
     dispatch(putStateRegister(stateRenderRegister))
+    dispatch(postStateForm({
+      name: "",
+      idGener: [],
+      idPlatform: [],
+      released: "",
+      background_image: "",
+      rating: "",
+      description: ""
+    }))
     dispatch(actualizarResultCreate())
   }
 
@@ -140,7 +133,7 @@ export const CreateVideogame = () => {
 
           <div className='file_option'>
             <p className='name_input'>Nombre</p>
-            <input type="text" name={"name"} value={formState.name} className='input_form' onChange={handleForm} />
+            <input type="text" name={"name"} value={formStateRe.name} className='input_form' onChange={handleForm} />
           </div>
 
           {/* todos los generos */}
@@ -149,9 +142,7 @@ export const CreateVideogame = () => {
             <BarraDeEleccion
               allGeners={allGeners}
               buttonGroup={"idGener"}
-              //estados
-              formState={formState}
-              setFormState={setFormState}/>
+              />
           </div>
 
           {/* todas las plataformas*/}
@@ -160,33 +151,31 @@ export const CreateVideogame = () => {
             <BarraDeEleccion
               allGeners={allPlatform}
               buttonGroup={"idPlatform"}
-              //estados
-              formState={formState}
-              setFormState={setFormState}/>
+              />
           </div>
 
           {/* fecha */}
           <div className='file_option'>
             <p className='name_input'>Fecha</p>
-            <input type="date" className='input_form' name={"released"} value={formState.released} onChange={handleForm} />
+            <input type="date" className='input_form' name={"released"} value={formStateRe.released} onChange={handleForm} />
           </div>
 
 
           <div className='file_option'>
             <p className='name_input'>URL imagen</p>
-            <input type="text" className='input_form' name={"background_image"} value={formState.background_image} onChange={handleForm} />
+            <input type="text" className='input_form' name={"background_image"} value={formStateRe.background_image} onChange={handleForm} />
           </div>
 
           <div className='file_option'>
             <p className='name_input'>Rating</p>
             <input type="number" step="0.1" className='input_form' placeholder="entre 0 y 5"
-              name={"rating"} value={formState.rating} onChange={handleFormFloat} />
+              name={"rating"} value={formStateRe.rating} onChange={handleFormFloat} />
               
           </div>
 
           <div className='file_option textarea'>
             <p className='name_input'>Descripcion</p>
-            <textarea type="text" name={"description"} value={formState.description} onChange={handleForm} />
+            <textarea type="text" name={"description"} value={formStateRe.description} onChange={handleForm} />
           </div>
 
           <button className='button_create' type='submit' onClick={renderMessage}>

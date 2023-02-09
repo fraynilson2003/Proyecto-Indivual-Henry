@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { postStateForm } from '../../../../redux/actions'
 import "../../../../styles/videogame/games/BarraDeEleccion.css"
 
 
@@ -9,6 +11,11 @@ export const BarraDeEleccion = (props) => {
   let [verifyCheck, setVerifyCheck] = useState([])
 
   let generos = props.allGeners.slice(1)
+
+  //redux estado para check
+  let dispatch = useDispatch()
+  let formStateRe = useSelector(state => state.formStateRedux)
+
 
   let actualizarDespliegue = ()=>{
     setStateDespliegue(!stateDespliegue)
@@ -25,28 +32,21 @@ export const BarraDeEleccion = (props) => {
     if (eve.target.checked) {
       setVerifyCheck([...verifyCheck, selectedOption])
 
-
-      props.setFormState({ 
-        ...props.formState,
-        [prop]: [...props.formState[props.buttonGroup], selectedOption]
-      })
-      console.log(props.formState[props.buttonGroup]);
+      dispatch(postStateForm({
+        ...formStateRe,
+        [prop]: [...formStateRe[props.buttonGroup], selectedOption]
+      }))
 
     } else {
       let filt = verifyCheck.filter(option => option != selectedOption)
       setVerifyCheck(filt)
 
-      props.setFormState({ 
-        ...props.formState,
-        [prop]: props.formState[props.buttonGroup].filter(option => option != selectedOption)
-      })
+      dispatch(postStateForm({
+        ...formStateRe,
+        [prop]: formStateRe[props.buttonGroup].filter(option => option != selectedOption)
+      }))
     }
   }
-
- 
-  useEffect(()=>{
-
-  },[props.formState[props.buttonGroup]])
 
   return (
     <div className="container_barra_selected">
@@ -56,7 +56,6 @@ export const BarraDeEleccion = (props) => {
           <div key={index} className="option_select">
             <input type="checkbox" className="input_check"
               id={opt.name} name={props.buttonGroup} value={opt.id}  
-              /*checked={}*/
               onChange={handlePropierties}/>
             <label htmlFor={opt.name} >{opt.name}</label>
           </div>

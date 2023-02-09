@@ -44,7 +44,7 @@
     min-width: 90%;
     max-width: 90%;
     
-    max-height: 70%;
+    max-height: 65%;
     height: auto;
   
     border-radius: 15px; /* crea un borde ovalado horizontal */
@@ -79,7 +79,7 @@
     font-size: 28px;
     color: white;
     font-family: Times, serif;
-    margin: 10px 0 10px;
+    margin: 25px 0 10px;
 }
 
 /* detail_generos */
@@ -145,13 +145,13 @@
 
     margin: 30px 5px 30px 5%;
 
-    min-height: 90vh;
+    /* min-height: 40vh; */
     height: auto;
     width: 30%;
 
     border-radius: 10px;
 
-    background-color:var(--color_componentes) ;
+   background-color:var(--color_componentes);
 
 }
 

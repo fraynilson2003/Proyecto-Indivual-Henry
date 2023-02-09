@@ -196,9 +196,10 @@ let getVideoByNameAPI = async(name)=>{
                   genres: vid.genres.map(det=>{
                     return {id: det.id,
                             name: det.name,
-                            image_background: det.image_background
+                            image_background: "NOT"
                             }
                   }),
+                  origin: "API",
                   }
     API.push(newGame)        
           
@@ -221,12 +222,14 @@ let getVideoByNameBaseData = async(name)=>{
       limit: 5,
       include:  
       {model: genre,
-        attributes: ["id", "name"],
+        attributes: ["id", "name", "image_background"],
         through: { 
         attributes:[]
       }}
     }
-  ).then(response => DataBase = response.map((vid)=>vid.dataValues)
+  ).then(response => DataBase = response.map((vid)=>{
+    vid.dataValues.origin = "database"
+    return vid.dataValues})
   ).catch(error=>{throw Error(error)})
   
   return DataBase
@@ -252,18 +255,7 @@ let getVideogameByName = async(name, ordenGeneral = "mas")=>{
 
   finalResult = [...DataBase, ...API ].slice(0,15)
   
-
-  if(ordenGeneral == "menos"){
-    finalResult =  finalResult.sort(function(a, b) {
-      return b.name - a.name;
-    });
-  }else{
-    finalResult =  finalResult.sort(function(a, b) {
-      return a.name - b.name;
-    });
-  }
-
-  // devolvemos solo 15, 5 de DATA BASE y 10 de API
+  // devolvemos solo 15
   return finalResult
 
 }

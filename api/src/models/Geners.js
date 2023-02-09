@@ -13,7 +13,8 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     image_background: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
+      defaultValue: "NOT",
       allowNull: false,
     }
 

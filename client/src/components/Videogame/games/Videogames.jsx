@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { ordenadorABC, ordenadorGener, ordenadorOrigin } from "../../../helpers/OrdenadorABC"
-import { getAllVideogames } from "../../../redux/actions"
+import { getAllVideogames, putStatePaginado } from "../../../redux/actions"
 import "../../../styles/videogame/games/Videogames.css"
 import { Paginado } from "./Paginado"
 import { VideogamesCard } from "./VideogamesCard"
@@ -14,9 +14,21 @@ export const Videogames = () => {
 
   //redux allVideogames
   const dispatch = useDispatch()
-  let stateRender = useSelector(state => state.allVideogames)
-  let allVideogames = useSelector(state => state.allVideogames)
+  let searchVarName = useSelector(state=>state.searchName)
 
+  let resultSearchName = useSelector(state => state.searchVideogame)
+  let resultAllVideo = useSelector(state => state.allVideogames)
+  let stateSearchNamee = useSelector(state => state.stateSearchName)
+
+  let stateRender
+
+  if(stateSearchNamee && resultSearchName){
+    stateRender = resultSearchName
+    dispatch(putStatePaginado(1))
+
+  }else{
+    stateRender = resultAllVideo
+  }
 
 
   //comprobamos cual estado vamos a renderizar || FILTRADO O TODO 
@@ -27,25 +39,24 @@ export const Videogames = () => {
   //Filtrado
   stateRender = ordenadorABC(stateRender, stateOrderFilter)
   stateRender = ordenadorOrigin(stateRender, stateOriginFilter)
+  stateRender = [...ordenadorGener(stateRender, stateGenerFilter)]
 
-  stateRender = ordenadorGener(stateRender, stateGenerFilter)
-  
   //PAGINACION
   let [currentPage, setCurrentPage] = useState(1)
+
   let [videogamesNumPage, setVideogamesPage] = useState(15)
 
-  let indexOfLastVideogames = currentPage * videogamesNumPage //15
+  let statePaginate = useSelector(state => state.statePagination)
+
+  let indexOfLastVideogames = statePaginate * videogamesNumPage //15
   let indexOfFirstVideogames = indexOfLastVideogames - videogamesNumPage //0
 
   //estado que se renderizara
   let currentVideogames = stateRender.slice(indexOfFirstVideogames, indexOfLastVideogames)
 
-  
-
-
   let controllPage = (numPage)=>{
     console.log(numPage)
-    setCurrentPage(numPage)
+    dispatch(putStatePaginado(numPage))
   }
 
   useEffect(()=>{
@@ -66,6 +77,11 @@ export const Videogames = () => {
     <div className='container_videogames'>
       <p className="title_general">Videogames</p>
 
+      {/* message de "resultados" */}
+      {currentVideogames.length && stateSearchNamee == true && stateRender.length? [
+        <div className="message_result_searchName">{`Resultados para: "${searchVarName}"`}</div>
+      ]:""}
+
       {/* Paginado */}
       <div className="container_paginado">
         <Paginado
@@ -77,16 +93,21 @@ export const Videogames = () => {
 
       {/* VideoGAmes ALL */}
       <div className="container_all_videogames">
-       {currentVideogames.length? currentVideogames.map((vid, index)=>
-          <VideogamesCard
+       {currentVideogames.length && stateRender.length? currentVideogames.map((vid, index)=>{
+          return [<VideogamesCard
             key={index}
             image={vid.background_image}
             name={vid.name}
             genres={vid.genres}
-            id={vid.id}/>
-        ): 
-        <div className="videogames_cargando">Cargando...</div>
+            id={vid.id}/>]
+          }): ""
         }
+
+      {/* message de "sin resultados" */}
+      {currentVideogames.length <= 0 && stateSearchNamee == true && [
+        <div className="videogames_cargando">{`No se encontraron resultados para "${searchVarName}"`}</div>
+      ]}
+
 
       </div>
     </div>

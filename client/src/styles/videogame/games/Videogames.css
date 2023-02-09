@@ -20,6 +20,20 @@
     letter-spacing: 1px;
 
 }
+
+/* message result */
+
+.container_videogames .message_result_searchName{
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.container_videogames .videogames_cargando{
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
 /* PAginado*/
 .container_videogames .container_paginado{
     display: flex;
@@ -77,13 +91,15 @@
 
 /* CONTAINER ALL VIDEOGAMES */
 .container_videogames .container_all_videogames{
-    flex: 1;
+    width: auto;
+    height: auto;
 
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     
     justify-content: space-evenly;
+    align-items: left;
 
 }
 /************************************************************************************************************/

@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import './App.css';
+import "./App.css"
 import { Portada } from './components/home/Portada';
 import { Main } from './components/Videogame/Main';
 import { VideogameDetail } from './components/VideogameDetail/VideogameDetail';
@@ -20,7 +20,7 @@ function App() {
     </Route>
 
     </div>
-  );
+  )
 }
 
 export default App;

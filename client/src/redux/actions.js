@@ -7,6 +7,7 @@ export const GET_ALL_VIDEOGAMES = "GET_ALL_VIDEOGAMES"
 
 export const GET_ID_VIDEOGAME = "GET_ID_VIDEOGAME"
 export const GET_NAME_VIDEOGAME = "GET_NAME_VIDEOGAME"
+export const PUT_STATE_SEARCH_NAME = "PUT_STATE_SEARCH_NAME"
 
 export const SET_VIDEOGAME_RESULT = "SET_VIDEOGAME_RESULT"
 export const ACTUALIZAR_ALL_VIDEOGAMES = "ACTUALIZAR_ALL_VIDEOGAMES"
@@ -15,13 +16,30 @@ export const GET_ALL_GENERS = "GET_ALL_GENERS"
 export const GET_ALL_PLATFORMS = "GET_ALL_PLATFORMS"
 
 export const PUT_ORDER = "PUT_ORDER"
+export const PUT_STATE_PAGINADO = "PUT_STATE_PAGINADO"
 
 
 export const DELETE_MOVIE = "DELETE_MOVIE"
 export const FILTER_GENERO = "FILTER_GENERO"
 
+export const POST_STATE_FORM = "POST_STATE_FORM"
+
 
 /* ********************************* */
+export let putStatePaginado = (pag)=>{
+  return{
+    type:PUT_STATE_PAGINADO,
+    payload: pag
+  }
+}
+
+export let putStateSearchName = (estado)=>{
+  return{
+    type:PUT_STATE_SEARCH_NAME,
+    payload: estado
+  }
+}
+
 export let actualizarResultCreate = ()=>{
   return{
     type:SET_VIDEOGAME_RESULT,
@@ -59,8 +77,6 @@ export let postRegisterVideogame = (statement)=>async(dispatch)=>{
 
     if(result.status == 200){
       console.log(result.status);
-
-
       return dispatch ({type:SET_VIDEOGAME_RESULT,payload: true})
       
     }
@@ -72,7 +88,14 @@ export let postRegisterVideogame = (statement)=>async(dispatch)=>{
   }
 
 }
+export let postStateForm = (select)=>{
+  return{
+    type:POST_STATE_FORM,
+    payload: select
+  }
+}
 
+/*************** PUT ***************** */
 export let putStateRegister = (active)=>{
   return{
     type:PUT_STATE_REGISTER,
@@ -80,6 +103,17 @@ export let putStateRegister = (active)=>{
   }
 }
 /* GET */
+export let getNameVideogame = (name)=>async(dispatch)=>{
+  try {
+    let result = await axios.get(`http://localhost:3002/videogames?name=${name}`)
+    let res = result.data
+
+    return dispatch({type: GET_NAME_VIDEOGAME, payload:res})
+  } catch (error) {
+    throw Error([error, "MALLLLLLLLLLLLLLLLL"])
+  }
+}
+
 export let getVideogameByID = (id)=> async(dispatch)=>{
   try {
     let result = await axios.get(`http://localhost:3002/videogames/${id}`)

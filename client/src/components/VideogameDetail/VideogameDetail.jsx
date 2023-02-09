@@ -5,7 +5,6 @@ import { NavLink, useParams } from 'react-router-dom'
 import { getVideogameByID } from '../../redux/actions'
 import "../../styles/videogameDetail/VideogameDetail.css"
 import { AsideDet } from './AsideDet'
-import { DetailProps } from './DetailProps'
 import { FooterDet } from './FooterDet'
 
 export const VideogameDetail = () => {

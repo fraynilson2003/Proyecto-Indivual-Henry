@@ -1,8 +1,23 @@
-let h = "jaja"
-let g = "5."
-
-let prueba
-
-console.log(isNaN(g)); // Output: true
-console.log(Number(g));
-console.log([1,2,3,4,5,6,7].includes(5));
+idGener
+: 
+['3']
+idPlatform
+: 
+['4']
+newVideoGame
+: 
+background_image
+: 
+"https://somoskudasai.com/wp-content/uploads/2022/10/portada_komi-san-76.jpg"
+description
+: 
+"Traducción del inglés-Komi Can't Communicate es una serie de manga japonesa escrita e ilustrada por Tomohito Oda. Ha sido serializado en la revista de manga shōnen Weekly Shōnen Sunday de Shogakukan desde mayo de 2016, con sus capítulos recopilados en veintiocho volúmenes tankōbon a partir de enero de 2023"
+name
+: 
+"Komi"
+rating
+: 
+5
+released
+: 
+"2023-01-18"

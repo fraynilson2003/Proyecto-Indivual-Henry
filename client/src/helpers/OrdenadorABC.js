@@ -45,12 +45,24 @@ export let ordenadorOrigin = (data, origin)=>{
 export let ordenadorGener = (data, gener)=>{
   if (gener == 0) return data
   
+  if (!gener) return data
+
+  console.log("Entra a filter gener");
+  console.log(data);
   //tengo que hacer que llegue el bind
   let result = data.filter(function(vid){
-    let idGen = vid.genres.map(gen=>gen.id)
-    return idGen.includes(Number(gener))
+    let idGen
+    if(!vid.genres.length){
+      return false
+    }else{
+      idGen = vid.genres.map(gen=>gen.id)
+      return idGen.includes(Number(gener))
+    }
   }.bind(this))
-  return result
+
+  console.log("*****/////****///****////****/");
+  console.log(result);
+  return [...result]
 
 
 }

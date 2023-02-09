@@ -2,66 +2,76 @@ import {
     GET_ALL_VIDEOGAMES,
     GET_ID_VIDEOGAME,
     GET_NAME_VIDEOGAME,
+    PUT_STATE_SEARCH_NAME,
     SET_VIDEOGAME_RESULT,
     GET_ALL_GENERS,
     GET_ALL_PLATFORMS,
     PUT_STATE_REGISTER,
-    ACTUALIZAR_ALL_VIDEOGAMES} from "./actions"
+    ACTUALIZAR_ALL_VIDEOGAMES,
+    POST_STATE_FORM,
+    PUT_STATE_PAGINADO} from "./actions"
     
 import {
     SET_FILTER_ORDER,
     SET_FILTER_ORIGIN,
     SET_FILTER_GENER,
-    FILTER_VIDEOGAMES,} from "./actionsFilter"
+    SET_FILTER_NAME} from "./actionsFilter"
   
   const initialState = {
+    //estado para actualizar render videogames
     actualizarAllVideogames: "Random",
 
+    //estados para guardar resultados de peticion
     allVideogames: [],
     videogameByID: {},
-    allVideogamesFilter: [],
     searchVideogame:[],
 
+    //estado para guardar get de generos y plataformas
     allGeners: [],
     allPlatforms: [],
-
-    resultCreateVideogame: false,
-
-    detailVideogame: {},
-
+    
+    //estado para guardar stados de cual componente renderizar
+    stateSearchName: false,
+    //estador para renderizar componente REGISTER
     stateCompRegister: false,
 
+    //estado para paginacion
+    statePagination: 1,
 
+    //estado para guardar si se creo o no un videojuego
+    resultCreateVideogame: false,
+
+    //estado para guardar detalles del filtro
+    searchName: "",
     order: "a - z",
     FilterOrigin: "All",
-    FilterGener: 0
+    FilterGener: 0,
+
+    //estado para check de formulario
+    formStateRedux: {
+      name: "",
+      idGener: [],
+      idPlatform: [],
+      released: "",
+      background_image: "",
+      rating: "",
+      description: ""
+    }
   }
   
   export const rootReducer = (state = initialState, action)=>{
     switch (action.type) {
-      //actualizar allVideogames
-      case ACTUALIZAR_ALL_VIDEOGAMES:
+      // GET
+      case GET_NAME_VIDEOGAME:
         return{
           ...state,
-          actualizarAllVideogames: action.payload
-        }
-      //RESULTADO DE creacion videojuego
-      case SET_VIDEOGAME_RESULT:
-        return{
-          ...state,
-          resultCreateVideogame: action.payload
+          searchVideogame: action.payload
         }
 
-      case PUT_STATE_REGISTER:
-        return{
-          ...state,
-          stateCompRegister: action.payload
-        }
-      // GET
       case GET_ALL_VIDEOGAMES:
         return{
           ...state,
-          allVideogames: action.payload,
+          allVideogames: action.payload
         }
 
       case GET_ID_VIDEOGAME:
@@ -82,14 +92,48 @@ import {
           allPlatforms: action.payload
         }
 
-    // APLICACION DE FILTROS
-      case FILTER_VIDEOGAMES:{
+      //ESTADOS PARA RENDERIZAR
+      case PUT_STATE_SEARCH_NAME:
         return{
           ...state,
-          allVideogamesFilter: [...action.payload]
+          stateSearchName: action.payload
+
+        }
+      
+
+      case PUT_STATE_PAGINADO:{
+        return{
+          ...state,
+          statePagination: action.payload
         }
       }
+
+      case PUT_STATE_REGISTER:
+        return{
+          ...state,
+          stateCompRegister: action.payload
+        }
+
+      //actualizar allVideogames
+      case ACTUALIZAR_ALL_VIDEOGAMES:
+        return{
+          ...state,
+          actualizarAllVideogames: action.payload
+        }
+
+      //RESULTADO DE creacion videojuego
+      case SET_VIDEOGAME_RESULT:
+        return{
+          ...state,
+          resultCreateVideogame: action.payload
+        }
+
      // FILTROS
+      case SET_FILTER_NAME:
+        return{
+          ...state,
+          searchName: action.payload
+        }
 
       case SET_FILTER_ORDER:
         return{
@@ -109,6 +153,15 @@ import {
           FilterGener: action.payload
         }       
       }
+
+    //ESTADO PARA CHECK
+    case POST_STATE_FORM:
+      return{
+        ...state,
+        formStateRedux: action.payload
+      }
+
+      
 
 
       default:

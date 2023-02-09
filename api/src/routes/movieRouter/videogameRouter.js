@@ -30,7 +30,7 @@ videogameRouter.get("/", async(req,res)=>{
     }
 })
 
-videogameRouter.get("/:id", async(req,res)=>{
+videogameRouter.get("/:id", async(req,res)=>{ 
     let {id} = req.params
     let results
     try {

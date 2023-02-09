@@ -3,18 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cfaester/enzyme-adapter-react-18": "^0.6.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.1",
+    "@zarconontol/enzyme-adapter-react-18": "^0.7.3",
     "axios": "^1.2.3",
-    
+    "enzyme": "^3.11.0",
+    "history": "^5.3.0",
+    "is-react": "^1.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-player": "^2.11.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
-
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
@@ -23,7 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --detectOpenHandles --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -32,6 +35,7 @@
       "react-app/jest"
     ]
   },
+
   "browserslist": {
     "production": [
       ">0.2%",
@@ -43,5 +47,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6"
   }
 }

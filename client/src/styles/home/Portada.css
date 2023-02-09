@@ -1,68 +1,101 @@
 .wrp{
+    display: flex;
+    flex-direction: column;
+
     width: 100%;
     height: 100%;
+    margin: 0;
     /* height: 500px; */
     position: relative;
-    background-color: rgba(49, 83, 49, 0.795);
+
 
 }
 
 .portada{
-    width: 100%;
-    height: 100%;
-    /* background: url("../../images/videogame.png"); */
-    background-image: url("../../images/videogame.png");
-    background-repeat: no-repeat;
-    background-size: 40%;
+    display: flex;
+    flex-direction: row;
 
-    background-position-x: 80%;
-    background-position-y: 15%;
-    background-attachment: fixed;
+
+    width: 100%;
+    height: 90%;
+
+    background-color: rgb(59, 61, 61);
+
+
 }
 
-.contenido{
-    width: 100%;
-    top: 0;
-    left: 0;
+/* footer  */
+.wrp .footer{
+    height: 10%;
+    background-color: rgb(255, 255, 255);
+}
+/* landing img */
+
+
+/* container img */
+.portada .container_img{
+    width: 55%;
+
+    position: relative;
+}
+.container_img .image_portada{
+    width: 60%;
+
     position: absolute;
-    height: 100%;
+    right: 20%;
+    top: 15%;
+    object-fit: contain;
+
+}
+/* container text */
+.portada .info{
     display: flex;
-    justify-content: start;
-    align-content: center;
+    flex-direction: column;
+    width: 45%;
 
 
-    background: rgba(red, green, blue, alpha);
+    position: relative;
     
 }
 
-.contenido .info{
+/* container text */
+.portada .info .container_text{
+    margin: 11% 15% 20% 30%;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 550px;
-    height: 100%;
 
-    padding-top: 5%;
+    justify-content: center;
     align-items: center;
+
 }
 
-.contenido .info h1{
-    color: rgb(15, 21, 110);
+
+/* left */
+.portada .info p{
+    color: rgb(221, 221, 219);
     font-size: 50px;
-    text-shadow: 0px 1px 3px rgba(26, 4, 66, 0.747);
-    margin-bottom: 25px;
+    font-weight: 700;
+
+
+    text-shadow: 2px 2px 5px rgba(15, 15, 15, 0.747);
     letter-spacing: 1px;
 }
+
+
+
 /*Link*/
 .link_home{
-    display: inline-block;
     text-decoration: none;
+    max-width: 100px;
+
     font-size: 19px;
     padding: 7px 20px;
 
     font-weight: 800;
-    color: rgb(230, 230, 230);
-    background: rgba(136, 14, 14, 0.911);
+    color: rgb(39, 38, 38);
+    background: rgba(241, 241, 241, 0.911);
+
+    box-shadow: 2px 2px 5px rgba(15, 15, 15, 0.747);
 
     border-radius: 5px;
     border: 2px solid transparent;
@@ -70,34 +103,26 @@
 
 
 
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
 }
 .link_home:hover{
-    background: rgba(58, 64, 150, 0.432);
+    box-shadow: 1px 1px 3px rgba(201, 198, 198, 0.911);
 
-    color: rgb(219, 208, 208);
-    border: 2px solid rgb(41, 40, 40);
+    color: rgba(241, 241, 241, 0.911);
+    background: rgb(39, 38, 38);
+
     cursor: pointer;
 }
 
+/* curveado */
 .curveado{
     margin: 0;
     position: absolute;
     width: 100%;
     max-width: 100%;
-    bottom: -1rem;
+    bottom: 2rem;
     
 }
 
-.img-svg{
-    width: 100%;
-    max-width: 100%;
 
-}
-
-@media(max-width: 768px){
-    .contenido .info h1{
-        font-size: 35px;
-    }
-}
 
